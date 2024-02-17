@@ -5,6 +5,7 @@ Name of the author(s):
 import time
 import sys
 from search import *
+from copy import deepcopy
 
 
 #################
@@ -13,20 +14,51 @@ from search import *
 dico = {}
 class Pacman(Problem):
 
-
+    def __init__(self, init_state):
+        super().__init__(init_state)
+        self.pos = (0, 0)
+        found_pacman = False
+        for row in range(shape[0] + 1):
+            for col in range(shape[1] + 1):
+                if init_state.grid[row][col] == 'P':
+                    self.pos = (row, col)
+                    found_pacman = True
+                    break
+            if found_pacman:
+                break
 
     def actions(self, state):
         # Define the possible actions for a given state
-        pass
+        actions = ["Up", "Down", "Left", "Right"]
+
+        if self.pos[0] == 0 or state.grid[self.pos[0] - 1][self.pos[1]] == "#":
+            actions.remove("Up")
+        if self.pos[0] == state.shape[0] - 1 or state.grid[self.pos[0] + 1][self.pos[1]] == "#":
+            actions.remove("Down")
+        if self.pos[1] == 0 or state.grid[self.pos[0]][self.pos[1] - 1] == "#":
+            actions.remove("Left")
+        if self.pos[1] == state.shape[1] or state.grid[self.pos[0]][self.pos[1] + 1] == "#":
+            actions.remove("Right")
+
+        return actions
 
 
     def result(self, state, action):
         # Apply the action to the state and return the new state
+        """
+        new_grid = deepcopy(state.grid)
+        new_grid[self.pos[0]][self.pos[1]] = "."
+
+        if action == "Up":
+            self.pos[0] -= 1
+            new_grid[self.pos[0]][self.pos[1]] = "P"
+        """
+
         pass
         
     def goal_test(self, state):
     	#check for goal state
-    	pass
+    	return state.answer == 0
 
 
 
