@@ -45,16 +45,30 @@ class Pacman(Problem):
 
     def result(self, state, action):
         # Apply the action to the state and return the new state
-        """
         new_grid = deepcopy(state.grid)
-        new_grid[self.pos[0]][self.pos[1]] = "."
 
+        # Two tuple have to be changed
         if action == "Up":
-            self.pos[0] -= 1
-            new_grid[self.pos[0]][self.pos[1]] = "P"
-        """
+            new_pos = self.pos[0] - 1, self.pos[1] # Take the new position
+            new_grid = new_grid[new_pos[0]][:new_pos[1]] + ('P',) + new_grid[new_pos[0]][new_pos[1] + 1:],\
+                       new_grid[new_pos[0] + 1][:new_pos[1]] + ('.',) + new_grid[new_pos[0] + 1][new_pos[1] + 1:]
+            state.grid = state.grid[:new_pos[0]] + (new_grid[0],) + (new_grid[1],) + state.grid[new_pos[0] + 2:]
+        if action == "Down":
+            new_pos = self.pos[0] + 1, self.pos[1] # Take the new position
+            new_grid = new_grid[new_pos[0] - 1][:new_pos[1]] + ('.',) + new_grid[new_pos[0] - 1][new_pos[1] + 1:],\
+                       new_grid[new_pos[0]][:new_pos[1]] + ('P',) + new_grid[new_pos[0]][new_pos[1] + 1:]
+            state.grid = state.grid[:new_pos[0] - 1] + (new_grid[0],) + (new_grid[1],) + state.grid[new_pos[0] + 2:]
+        # We change only a tuple
+        if action == "Right":
+            new_pos = self.pos[0], self.pos[1] + 1 # Take the new position
+            new_grid = new_grid[new_pos[0]][:new_pos[1] - 1] + ('.', 'P') + new_grid[new_pos[0]][new_pos[1] + 1:]
+            state.grid = state.grid[:new_pos[0]] + (new_grid,) + state.grid[new_pos[0] + 1:]
+        if action == "Left":
+            new_pos = self.pos[0], self.pos[1] - 1 # Take the new position
+            new_grid = new_grid[new_pos[0]][:new_pos[1]] + ('.', 'P') + new_grid[new_pos[0]][new_pos[1] + 2:]
+            state.grid = state.grid[:new_pos[0]] + (new_grid,) + state.grid[new_pos[0] + 1:]
 
-        pass
+        return state
         
     def goal_test(self, state):
     	#check for goal state
