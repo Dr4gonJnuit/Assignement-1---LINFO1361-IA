@@ -3,7 +3,6 @@ Name of the author(s):
 - Charles Lohest <charles.lohest@uclouvain.be>
 """
 import time
-import sys
 from search import *
 from copy import deepcopy
 
@@ -45,33 +44,31 @@ class Pacman(Problem):
 
     def result(self, state, action):
 
-        new_grid = change_grid(self.pos, action, state.grid)
+        move = ()
+        if action == "Up":
+            move = (0, -1)
+        elif action == "Down":
+            move = (0, 1)
+        elif action == "Right":
+            move = (1, 0)
+        elif action == "Left":
+            move = (-1, 0)
+        new_pos = self.pos[0] + move[0], self.pos[1] + move[1]  # Take the new position
+
+        # Since it's easier to work with list we change the tuple in list
+        new_grid = [list(elem) for elem in state.grid]
+
+        # We replace the previous position by a '.' and the new by 'P'
+        new_grid[self.pos[0]][self.pos[1]] = '.'
+        # Add a counter for the fruits
+        if new_grid[new_pos[0]][new_pos[1]] == 'F':
+            state.answer -= 1
+        new_grid[new_pos[0]][new_pos[1]] = 'P'
+
+        # We change back the list in tuple
+        new_grid = tuple(tuple(elem) for elem in grid)
 
         state.grid = new_grid
-
-        """# Apply the action to the state and return the new state
-        new_grid = deepcopy(state.grid)
-
-        # Two tuple have to be changed
-        if action == "Up":
-            new_pos = self.pos[0] - 1, self.pos[1]  # Take the new position
-            new_grid = new_grid[new_pos[0]][:new_pos[1]] + ('P',) + new_grid[new_pos[0]][new_pos[1] + 1:], \
-                       new_grid[new_pos[0] + 1][:new_pos[1]] + ('.',) + new_grid[new_pos[0] + 1][new_pos[1] + 1:]
-            state.grid = state.grid[:new_pos[0]] + (new_grid[0],) + (new_grid[1],) + state.grid[new_pos[0] + 2:]
-        if action == "Down":
-            new_pos = self.pos[0] + 1, self.pos[1]  # Take the new position
-            new_grid = new_grid[new_pos[0] - 1][:new_pos[1]] + ('.',) + new_grid[new_pos[0] - 1][new_pos[1] + 1:], \
-                       new_grid[new_pos[0]][:new_pos[1]] + ('P',) + new_grid[new_pos[0]][new_pos[1] + 1:]
-            state.grid = state.grid[:new_pos[0] - 1] + (new_grid[0],) + (new_grid[1],) + state.grid[new_pos[0] + 2:]
-        # We change only a tuple
-        if action == "Right":
-            new_pos = self.pos[0], self.pos[1] + 1  # Take the new position
-            new_grid = new_grid[new_pos[0]][:new_pos[1] - 1] + ('.', 'P') + new_grid[new_pos[0]][new_pos[1] + 1:]
-            state.grid = state.grid[:new_pos[0]] + (new_grid,) + state.grid[new_pos[0] + 1:]
-        if action == "Left":
-            new_pos = self.pos[0], self.pos[1] - 1  # Take the new position
-            new_grid = new_grid[new_pos[0]][:new_pos[1]] + ('.', 'P') + new_grid[new_pos[0]][new_pos[1] + 2:]
-            state.grid = state.grid[:new_pos[0]] + (new_grid,) + state.grid[new_pos[0] + 1:]"""
 
         return state
 
@@ -106,22 +103,6 @@ def read_instance_file(filepath):
     initial_fruit_count = sum(row.count('F') for row in initial_grid)
 
     return (shape_x, shape_y), initial_grid, initial_fruit_count
-
-
-def change_grid(position: tuple, move: tuple, grid: tuple) -> tuple:
-    new_pos = move[0], move[1]  # Take the new position
-
-    # Since it's easier to work with list we change the tuple in list
-    grid = [list(elem) for elem in grid]
-
-    # We replace the previous position by a '.' and the new by 'P'
-    grid[position[0]][position[1]] = '.'
-    grid[new_pos[0]][new_pos[1]] = 'P'
-
-    # We change back the list in tuple
-    grid = tuple(tuple(elem) for elem in grid)
-
-    return grid
 
 
 if __name__ == "__main__":
