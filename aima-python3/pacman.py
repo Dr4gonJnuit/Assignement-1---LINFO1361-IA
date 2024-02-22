@@ -46,13 +46,13 @@ class Pacman(Problem):
 
         move = ()
         if action == "Up":
-            move = (0, -1)
-        elif action == "Down":
-            move = (0, 1)
-        elif action == "Right":
-            move = (1, 0)
-        elif action == "Left":
             move = (-1, 0)
+        elif action == "Down":
+            move = (1, 0)
+        elif action == "Right":
+            move = (0, 1)
+        elif action == "Left":
+            move = (0, -1)
         new_pos = self.pos[0] + move[0], self.pos[1] + move[1]  # Take the new position
 
         # Since it's easier to work with list we change the tuple in list
@@ -66,7 +66,7 @@ class Pacman(Problem):
         new_grid[new_pos[0]][new_pos[1]] = 'P'
 
         # We change back the list in tuple
-        new_grid = tuple(tuple(elem) for elem in grid)
+        new_grid = tuple(tuple(elem) for elem in new_grid)
 
         state.grid = new_grid
 
