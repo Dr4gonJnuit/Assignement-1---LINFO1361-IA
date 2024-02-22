@@ -7,11 +7,12 @@ import sys
 from search import *
 from copy import deepcopy
 
-
 #################
 # Problem class #
 #################
 dico = {}
+
+
 class Pacman(Problem):
 
     def __init__(self, init_state):
@@ -42,38 +43,41 @@ class Pacman(Problem):
 
         return actions
 
-
     def result(self, state, action):
-        # Apply the action to the state and return the new state
+
+        new_grid = change_grid(self.pos, action, state.grid)
+
+        state.grid = new_grid
+
+        """# Apply the action to the state and return the new state
         new_grid = deepcopy(state.grid)
 
         # Two tuple have to be changed
         if action == "Up":
-            new_pos = self.pos[0] - 1, self.pos[1] # Take the new position
-            new_grid = new_grid[new_pos[0]][:new_pos[1]] + ('P',) + new_grid[new_pos[0]][new_pos[1] + 1:],\
+            new_pos = self.pos[0] - 1, self.pos[1]  # Take the new position
+            new_grid = new_grid[new_pos[0]][:new_pos[1]] + ('P',) + new_grid[new_pos[0]][new_pos[1] + 1:], \
                        new_grid[new_pos[0] + 1][:new_pos[1]] + ('.',) + new_grid[new_pos[0] + 1][new_pos[1] + 1:]
             state.grid = state.grid[:new_pos[0]] + (new_grid[0],) + (new_grid[1],) + state.grid[new_pos[0] + 2:]
         if action == "Down":
-            new_pos = self.pos[0] + 1, self.pos[1] # Take the new position
-            new_grid = new_grid[new_pos[0] - 1][:new_pos[1]] + ('.',) + new_grid[new_pos[0] - 1][new_pos[1] + 1:],\
+            new_pos = self.pos[0] + 1, self.pos[1]  # Take the new position
+            new_grid = new_grid[new_pos[0] - 1][:new_pos[1]] + ('.',) + new_grid[new_pos[0] - 1][new_pos[1] + 1:], \
                        new_grid[new_pos[0]][:new_pos[1]] + ('P',) + new_grid[new_pos[0]][new_pos[1] + 1:]
             state.grid = state.grid[:new_pos[0] - 1] + (new_grid[0],) + (new_grid[1],) + state.grid[new_pos[0] + 2:]
         # We change only a tuple
         if action == "Right":
-            new_pos = self.pos[0], self.pos[1] + 1 # Take the new position
+            new_pos = self.pos[0], self.pos[1] + 1  # Take the new position
             new_grid = new_grid[new_pos[0]][:new_pos[1] - 1] + ('.', 'P') + new_grid[new_pos[0]][new_pos[1] + 1:]
             state.grid = state.grid[:new_pos[0]] + (new_grid,) + state.grid[new_pos[0] + 1:]
         if action == "Left":
-            new_pos = self.pos[0], self.pos[1] - 1 # Take the new position
+            new_pos = self.pos[0], self.pos[1] - 1  # Take the new position
             new_grid = new_grid[new_pos[0]][:new_pos[1]] + ('.', 'P') + new_grid[new_pos[0]][new_pos[1] + 2:]
-            state.grid = state.grid[:new_pos[0]] + (new_grid,) + state.grid[new_pos[0] + 1:]
+            state.grid = state.grid[:new_pos[0]] + (new_grid,) + state.grid[new_pos[0] + 1:]"""
 
         return state
-        
-    def goal_test(self, state):
-    	#check for goal state
-    	return state.answer == 0
 
+    def goal_test(self, state):
+        # check for goal state
+        return state.answer == 0
 
 
 ###############
@@ -104,6 +108,22 @@ def read_instance_file(filepath):
     return (shape_x, shape_y), initial_grid, initial_fruit_count
 
 
+def change_grid(position: tuple, move: tuple, grid: tuple) -> tuple:
+    new_pos = move[0], move[1]  # Take the new position
+
+    # Since it's easier to work with list we change the tuple in list
+    grid = [list(elem) for elem in grid]
+
+    # We replace the previous position by a '.' and the new by 'P'
+    grid[position[0]][position[1]] = '.'
+    grid[new_pos[0]][new_pos[1]] = 'P'
+
+    # We change back the list in tuple
+    grid = tuple(tuple(elem) for elem in grid)
+
+    return grid
+
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print(f"Usage: ./Pacman.py <path_to_instance_file>")
@@ -128,4 +148,4 @@ if __name__ == "__main__":
     print("* Execution time:\t", str(end_timer - start_timer))
     print("* Path cost to goal:\t", node.depth, "moves")
     print("* #Nodes explored:\t", nb_explored)
-    print("* Queue size at goal:\t",  remaining_nodes)
+    print("* Queue size at goal:\t", remaining_nodes)
