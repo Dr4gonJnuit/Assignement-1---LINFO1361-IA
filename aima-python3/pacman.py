@@ -66,29 +66,30 @@ class Pacman(Problem):
         return actions
 
     def result(self, state, action):
+        new_grid = deepcopy(state.grid)
+
         move = action.replace("Move to (", "")
         move = move.replace(")", "")
         move = move.replace(",", " ")
-        move = move.split()
-
-        new_pos = self.pos[0] + move[0], self.pos[1] + move[1]  # Take the new position
+        row, col = tuple(map(int, move.split()))
 
         # Since it's easier to work with list we change the tuple in list
-        new_grid = [list(elem) for elem in state.grid]
+        new_grid = [list(elem) for elem in new_grid]
 
         # We replace the previous position by a '.' and the new by 'P'
         new_grid[self.pos[0]][self.pos[1]] = '.'
         # Add a counter for the fruits
-        if new_grid[new_pos[0]][new_pos[1]] == 'F':
+        if new_grid[row][col] == 'F':
             state.answer -= 1
-        new_grid[new_pos[0]][new_pos[1]] = 'P'
+        new_grid[row][col] = 'P'
+        self.pos = (row, col)
 
         # We change back the list in tuple
         new_grid = tuple(tuple(elem) for elem in new_grid)
 
         state.grid = new_grid
 
-        return state
+        return State(shape, new_grid, state.answer, action)
 
     def goal_test(self, state):
         # check for goal state
@@ -134,7 +135,7 @@ if __name__ == "__main__":
 
     # Example of search
     start_timer = time.perf_counter()
-    node, nb_explored, remaining_nodes = breadth_first_graph_search(problem)
+    node, nb_explored, remaining_nodes = depth_first_graph_search(problem)
     end_timer = time.perf_counter()
 
     # Example of print
