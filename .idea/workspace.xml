@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="939e9174-cf19-4303-9747-8f36c55d91d4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Assignement-1---LINFO1361-IA.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Assignement-1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Assignement-1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aima-python3/pacman.py" beforeDir="false" afterPath="$PROJECT_DIR$/aima-python3/pacman.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/assignment/report_a1.aux" beforeDir="false" afterPath="$PROJECT_DIR$/template/assignment/report_a1.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/assignment/report_a1.fdb_latexmk" beforeDir="false" afterPath="$PROJECT_DIR$/template/assignment/report_a1.fdb_latexmk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/assignment/report_a1.fls" beforeDir="false" afterPath="$PROJECT_DIR$/template/assignment/report_a1.fls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/assignment/report_a1.log" beforeDir="false" afterPath="$PROJECT_DIR$/template/assignment/report_a1.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/assignment/report_a1.out" beforeDir="false" afterPath="$PROJECT_DIR$/template/assignment/report_a1.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/assignment/report_a1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/template/assignment/report_a1.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/assignment/report_a1.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/template/assignment/report_a1.synctex.gz" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +16,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$USER_HOME$/AppData/Local/Programs/Python/Python312/Lib/tokenize.py" root0="SKIP_INSPECTION" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -39,29 +23,33 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2cfkTQ5DDvKpr7szA0FxWPO9JOf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Pacman.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Bette/Documents/UCL/Année 2023-2024/LINFO1361 - Intelligence Artificielle/Assignements/Assignement-1&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Pacman.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/anato/OneDrive/Bureau/UCL/2_Master1/IA/Assignement-1---LINFO1361-IA/aima-python3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\anato\OneDrive\Bureau\UCL\2_Master1\IA\Assignement-1---LINFO1361-IA\aima-python3" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Bette\Documents\UCL\Année 2023-2024\LINFO1361 - Intelligence Artificielle\Assignement-1\aima-python3" />
       <recent name="C:\Users\Bette\Documents\UCL\Année 2023-2024\LINFO1361 - Intelligence Artificielle\Assignement-1" />
@@ -70,20 +58,19 @@
   <component name="RunManager">
     <configuration name="Pacman" type="PythonConfigurationType" factoryName="Python">
       <module name="Assignement-1" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\Bette\Documents\UCL\Année 2023-2024\LINFO1361 - Intelligence Artificielle\Assignements\Assignement-1\aima-python3" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_HOME" value="C:\Users\anato\AppData\Local\Programs\Python\Python310\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/aima-python3" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/aima-python3/pacman.py" />
-      <option name="PARAMETERS" value="../Instances/i01" />
+      <option name="PARAMETERS" value="../Instances/i07" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -137,18 +124,10 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/aima-python3/pacman.py</url>
-          <line>72</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/aima-python3/pacman.py</url>
-          <line>46</line>
-          <option name="timeStamp" value="7" />
+          <line>71</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Assignement_1$Pacman.coverage" NAME="Pacman Coverage Results" MODIFIED="1708630918752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\Bette\Documents\UCL\Année 2023-2024\LINFO1361 - Intelligence Artificielle\Assignements\Assignement-1\aima-python3" />
   </component>
 </project>

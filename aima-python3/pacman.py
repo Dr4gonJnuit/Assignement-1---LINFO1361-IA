@@ -29,30 +29,48 @@ class Pacman(Problem):
 
     def actions(self, state):
         # Define the possible actions for a given state
-        actions = ["Up", "Down", "Left", "Right"]
+        actions = []
 
-        if self.pos[0] == 0 or state.grid[self.pos[0] - 1][self.pos[1]] == "#":
-            actions.remove("Up")
-        if self.pos[0] == state.shape[0] - 1 or state.grid[self.pos[0] + 1][self.pos[1]] == "#":
-            actions.remove("Down")
-        if self.pos[1] == 0 or state.grid[self.pos[0]][self.pos[1] - 1] == "#":
-            actions.remove("Left")
-        if self.pos[1] == state.shape[1] or state.grid[self.pos[0]][self.pos[1] + 1] == "#":
-            actions.remove("Right")
+        i = self.pos[1] - 1
+        while i >= 0:
+            if(state.grid[self.pos[0]][i] != '#'):
+                actions.append("Move to (" + str(self.pos[0]) + "," + str(i) + ")")
+            else:
+                break
+            i -= 1
+
+        i = self.pos[1] + 1
+        while i < state.shape[1]:
+            if (state.grid[self.pos[0]][i] != '#'):
+                actions.append("Move to (" + str(self.pos[0]) + "," + str(i) + ")")
+            else:
+                break
+            i += 1
+
+        i = self.pos[0] - 1
+        while i >= 0:
+            if (state.grid[i][self.pos[1]] != '#'):
+                actions.append("Move to (" + str(i) + "," + str(self.pos[1]) + ")")
+            else:
+                break
+            i -= 1
+
+        i = self.pos[0] + 1
+        while i < state.shape[0]:
+            if (state.grid[i][self.pos[1]] != '#'):
+                actions.append("Move to (" + str(i) + "," + str(self.pos[1]) + ")")
+            else:
+                break
+            i += 1
 
         return actions
 
     def result(self, state, action):
+        move = action.replace("Move to (", "")
+        move = move.replace(")", "")
+        move = move.replace(",", " ")
+        move = move.split()
 
-        move = ()
-        if action == "Up":
-            move = (-1, 0)
-        elif action == "Down":
-            move = (1, 0)
-        elif action == "Right":
-            move = (0, 1)
-        elif action == "Left":
-            move = (0, -1)
         new_pos = self.pos[0] + move[0], self.pos[1] + move[1]  # Take the new position
 
         # Since it's easier to work with list we change the tuple in list
@@ -116,7 +134,7 @@ if __name__ == "__main__":
 
     # Example of search
     start_timer = time.perf_counter()
-    node, nb_explored, remaining_nodes = breadth_first_tree_search(problem)
+    node, nb_explored, remaining_nodes = breadth_first_graph_search(problem)
     end_timer = time.perf_counter()
 
     # Example of print
