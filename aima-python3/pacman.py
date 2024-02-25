@@ -34,7 +34,7 @@ class Pacman(Problem):
 
         i = pacman_pos[1] - 1
         while i >= 0:
-            if(state.grid[pacman_pos[0]][i] != '#'):
+            if state.grid[pacman_pos[0]][i] != '#':
                 actions.append("Move to (" + str(pacman_pos[0]) + "," + str(i) + ")")
             else:
                 break
@@ -42,7 +42,7 @@ class Pacman(Problem):
 
         i = pacman_pos[1] + 1
         while i < state.shape[1]:
-            if (state.grid[pacman_pos[0]][i] != '#'):
+            if state.grid[pacman_pos[0]][i] != '#':
                 actions.append("Move to (" + str(pacman_pos[0]) + "," + str(i) + ")")
             else:
                 break
@@ -50,7 +50,7 @@ class Pacman(Problem):
 
         i = pacman_pos[0] - 1
         while i >= 0:
-            if (state.grid[i][pacman_pos[1]] != '#'):
+            if state.grid[i][pacman_pos[1]] != '#':
                 actions.append("Move to (" + str(i) + "," + str(pacman_pos[1]) + ")")
             else:
                 break
@@ -58,7 +58,7 @@ class Pacman(Problem):
 
         i = pacman_pos[0] + 1
         while i < state.shape[0]:
-            if (state.grid[i][pacman_pos[1]] != '#'):
+            if state.grid[i][pacman_pos[1]] != '#':
                 actions.append("Move to (" + str(i) + "," + str(pacman_pos[1]) + ")")
             else:
                 break
@@ -68,6 +68,8 @@ class Pacman(Problem):
 
     def result(self, state, action):
         new_grid = deepcopy(state.grid)
+
+        fruits = sum(row.count('F') for row in new_grid)
 
         move = action.replace("Move to (", "")
         move = move.replace(")", "")
@@ -82,15 +84,17 @@ class Pacman(Problem):
         # We replace the previous position by a '.' and the new by 'P'
         new_grid[pacman_pos[0]][pacman_pos[1]] = '.'
         # Add a counter for the fruits
+        """
         if new_grid[row][col] == 'F':
             state.answer -= 1
+        """
         new_grid[row][col] = 'P'
         dico[action] = (row, col)
 
         # We change back the list in tuple
         new_grid = tuple(tuple(elem) for elem in new_grid)
 
-        return State(shape, new_grid, state.answer, action)
+        return State(shape, new_grid, sum(row.count('F') for row in new_grid), action)
 
     def goal_test(self, state):
         # check for goal state
