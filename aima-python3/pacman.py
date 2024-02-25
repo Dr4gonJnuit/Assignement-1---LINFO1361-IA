@@ -16,12 +16,11 @@ class Pacman(Problem):
 
     def __init__(self, init_state):
         super().__init__(init_state)
-        self.pos = (0, 0)
         found_pacman = False
         for row in range(shape[0] + 1):
             for col in range(shape[1] + 1):
                 if init_state.grid[row][col] == 'P':
-                    self.pos = (row, col)
+                    dico[init_state.move] = (row, col)
                     found_pacman = True
                     break
             if found_pacman:
@@ -30,35 +29,37 @@ class Pacman(Problem):
     def actions(self, state):
         # Define the possible actions for a given state
         actions = []
+        
+        pacman_pos = dico[state.move]
 
-        i = self.pos[1] - 1
+        i = pacman_pos[1] - 1
         while i >= 0:
-            if(state.grid[self.pos[0]][i] != '#'):
-                actions.append("Move to (" + str(self.pos[0]) + "," + str(i) + ")")
+            if(state.grid[pacman_pos[0]][i] != '#'):
+                actions.append("Move to (" + str(pacman_pos[0]) + "," + str(i) + ")")
             else:
                 break
             i -= 1
 
-        i = self.pos[1] + 1
+        i = pacman_pos[1] + 1
         while i < state.shape[1]:
-            if (state.grid[self.pos[0]][i] != '#'):
-                actions.append("Move to (" + str(self.pos[0]) + "," + str(i) + ")")
+            if (state.grid[pacman_pos[0]][i] != '#'):
+                actions.append("Move to (" + str(pacman_pos[0]) + "," + str(i) + ")")
             else:
                 break
             i += 1
 
-        i = self.pos[0] - 1
+        i = pacman_pos[0] - 1
         while i >= 0:
-            if (state.grid[i][self.pos[1]] != '#'):
-                actions.append("Move to (" + str(i) + "," + str(self.pos[1]) + ")")
+            if (state.grid[i][pacman_pos[1]] != '#'):
+                actions.append("Move to (" + str(i) + "," + str(pacman_pos[1]) + ")")
             else:
                 break
             i -= 1
 
-        i = self.pos[0] + 1
+        i = pacman_pos[0] + 1
         while i < state.shape[0]:
-            if (state.grid[i][self.pos[1]] != '#'):
-                actions.append("Move to (" + str(i) + "," + str(self.pos[1]) + ")")
+            if (state.grid[i][pacman_pos[1]] != '#'):
+                actions.append("Move to (" + str(i) + "," + str(pacman_pos[1]) + ")")
             else:
                 break
             i += 1
@@ -76,18 +77,18 @@ class Pacman(Problem):
         # Since it's easier to work with list we change the tuple in list
         new_grid = [list(elem) for elem in new_grid]
 
+        pacman_pos = dico[state.move]
+
         # We replace the previous position by a '.' and the new by 'P'
-        new_grid[self.pos[0]][self.pos[1]] = '.'
+        new_grid[pacman_pos[0]][pacman_pos[1]] = '.'
         # Add a counter for the fruits
         if new_grid[row][col] == 'F':
             state.answer -= 1
         new_grid[row][col] = 'P'
-        self.pos = (row, col)
+        dico[action] = (row, col)
 
         # We change back the list in tuple
         new_grid = tuple(tuple(elem) for elem in new_grid)
-
-        state.grid = new_grid
 
         return State(shape, new_grid, state.answer, action)
 
@@ -106,12 +107,19 @@ class State:
         self.answer = answer
         self.grid = grid
         self.move = move
+        self.hash = hash(str(grid))
 
     def __str__(self):
         s = self.move + "\n"
         for line in self.grid:
             s += "".join(line) + "\n"
         return s
+
+    def __eq__(self, other_state):
+        self.hash == other_state.hash
+
+    def __hash__(self):
+        return self.hash
 
 
 def read_instance_file(filepath):
@@ -135,7 +143,7 @@ if __name__ == "__main__":
 
     # Example of search
     start_timer = time.perf_counter()
-    node, nb_explored, remaining_nodes = depth_first_graph_search(problem)
+    node, nb_explored, remaining_nodes = breadth_first_graph_search(problem)
     end_timer = time.perf_counter()
 
     # Example of print
