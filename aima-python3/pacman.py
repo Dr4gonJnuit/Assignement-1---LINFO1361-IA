@@ -17,8 +17,8 @@ class Pacman(Problem):
     def __init__(self, init_state):
         super().__init__(init_state)
         found_pacman = False
-        for row in range(shape[0] + 1):
-            for col in range(shape[1] + 1):
+        for row in range(init_state.shape[0]):
+            for col in range(init_state.shape[1]):
                 if init_state.grid[row][col] == 'P':
                     dico[init_state.move] = (row, col)
                     found_pacman = True
@@ -29,7 +29,7 @@ class Pacman(Problem):
     def actions(self, state):
         # Define the possible actions for a given state
         actions = []
-        
+
         pacman_pos = dico[state.move]
 
         i = pacman_pos[1] - 1
@@ -69,7 +69,7 @@ class Pacman(Problem):
     def result(self, state, action):
         new_grid = deepcopy(state.grid)
 
-        fruits = sum(row.count('F') for row in new_grid)
+        fruits = state.answer
 
         move = action.replace("Move to (", "")
         move = move.replace(")", "")
@@ -84,17 +84,13 @@ class Pacman(Problem):
         # We replace the previous position by a '.' and the new by 'P'
         new_grid[pacman_pos[0]][pacman_pos[1]] = '.'
         # Add a counter for the fruits
-        """
         if new_grid[row][col] == 'F':
-            state.answer -= 1
-        """
+            fruits -= 1
+
         new_grid[row][col] = 'P'
         dico[action] = (row, col)
 
-        # We change back the list in tuple
-        new_grid = tuple(tuple(elem) for elem in new_grid)
-
-        return State(shape, new_grid, sum(row.count('F') for row in new_grid), action)
+        return State(shape, tuple(map(tuple, new_grid)), fruits, action)
 
     def goal_test(self, state):
         # check for goal state
@@ -111,19 +107,12 @@ class State:
         self.answer = answer
         self.grid = grid
         self.move = move
-        self.hash = hash(str(grid))
 
     def __str__(self):
         s = self.move + "\n"
         for line in self.grid:
             s += "".join(line) + "\n"
         return s
-
-    def __eq__(self, other_state):
-        self.hash == other_state.hash
-
-    def __hash__(self):
-        return self.hash
 
 
 def read_instance_file(filepath):
