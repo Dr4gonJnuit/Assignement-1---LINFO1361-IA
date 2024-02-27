@@ -16,6 +16,7 @@
 
 \begin{answer}
 % Your answer here
+Pour effectuer une recherche, il faut définir la classe \textit{Problem} avec les méthodes \textit{actions}, \textit{result} et \textit{goal\_test}. Elles sont utilisées dans \textit{tree\_search} pour connaître ce que PacMan peut faire et fera à chaque état.
 \end{answer}
 
 
@@ -27,6 +28,7 @@
 
 \begin{answer}
 % Your answer here
+\textit{Breadth\_first\_graph\_search} utilise une Queue qui est une structure FIFO, tandis que \textit{depth\_first\_graph\_search} utilise une Stack qui elle est une structure LIFO. Ce ne sont donc pas les mêmes valeurs qui en resortiront, le premier sort les valeurs dans l'ordre où elles sont entrées, tandis que le second sort les dernières valeurs entrées en premier.
 \end{answer}
 
 
@@ -38,6 +40,8 @@
 
 \begin{answer}
 % Your answer here
+Un \textit{graph\_search} va garder en mémoire les états déjà visités pour ne pas les revisiter, évitant ainsi une boucle infinie. \\
+Un \textit{tree\_search} ne le fait pas et de ce fait requiert moins de mémoire.
 \end{answer}
 
 
@@ -79,6 +83,8 @@ PacMan Problem (17 pts)}
 
 \begin{answer}
 % Your answer here
+La taille d'une grille est de "n x m", le nombre d'actions possibles maximales est de "n + m - 2". En effet, sans mur, PacMan peut se déplacer en ligne droite jusqu'au bord de la grille. Donc, sans compter l'emplacement où il se situe, il a "n + m - 2" cases où il peut s'arrêter. \\
+Le facteur de branchement quant à lui est aussi de "n + m - 2". On peut avoir maximum "n + m - 2" positions pour PacMan donc si on construit un arbre, chaque noeud aura au maximum "n + m - 2" enfants.
 \end{answer}
 \begin{enumerate}
 \setcounter{enumi}{1}
@@ -91,6 +97,7 @@ PacMan Problem (17 pts)}
 
 \begin{answer}
 % Your answer here
+Pour éviter les murs, on peut simplement vérifier si la case où PacMan veut se déplacer est un mur. Si c'est le cas, on arrête la vérification des espaces libres et on retourne celles qu'on vérifiées.
 \end{answer}
 
 
@@ -119,6 +126,9 @@ PacMan Problem (17 pts)}
 
 \begin{answers}[4cm]
 % Your answer here
+En utilisant un graphe, on évite de visiter plusieurs fois le même état, ce qui est un avantage car on gagne du temps. Cependant, on utilise plus de mémoire pour stocker les états déjà visités. \\
+En utilisant un arbre, on risque de tomber dans une boucle infinie car on ne garde pas en mémoire les états déjà visités pour gagner de la place. On peut donc se retrouver à visiter plusieurs fois le même état . \\
+Pour ce problème, on choisirait d'utiliser un graphe car on a un nombre fini d'états et on ne risque pas de tomber dans une boucle infinie.
 \end{answers}
 
 
@@ -149,30 +159,30 @@ PacMan Problem (17 pts)}
 \cline{2-13}
  & T(s) & EN & RNQ & T(s) & EN & RNQ & T(s) & EN & RNQ & T(s) & EN & RNQ\\
 \hline
-i\_01 & & & & & & & & & & & & \\
+i\_01 & 0.07 & 116 & 1421 & 0.005 & 9 & 106 & N/A & N/A & N/A & N/A & N/A & N/A \\
 \hline
-i\_02 & & & & & & & & & & & & \\
+i\_02 & 0.03 & 96 & 861 & 0.003 & 9 & 86 & N/A & N/A & N/A & N/A & N/A & N/A \\
 \hline
-i\_03 & & & & & & & & & & & & \\
+i\_03 & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A \\
 \hline
-i\_04 & & & & & & & & & & & & \\
+i\_04 & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A \\
 \hline
-i\_05 & & & & & & & & & & & & \\
+i\_05 & 3.29 & 6849 & 66352 & 0.3 & 692 & 6156 & N/A & N/A & N/A & N/A & N/A & N/A \\
 \hline
-i\_06 & & & & & & & & & & & & \\
+i\_06 & 0.05 & 283 & 2282 & 0.007 & 32 & 250 & N/A & N/A & N/A & N/A & N/A & N/A \\
 \hline
-i\_07 & & & & & & & & & & & & \\
+i\_07 & 0.47 & 2157 & 16410 & 0.06 & 247 & 1909 & N/A & N/A & N/A & N/A & N/A & N/A \\
 \hline
-i\_08 & & & & & & & & & & & & \\
+i\_08 & 0.008 & 89 & 451 & 0.001 & 16 & 72 & N/A & N/A & N/A & N/A & N/A & N/A \\
 \hline
-i\_09 & & & & & & & & & & & & \\
+i\_09 & 0.02 & 76 & 581 & 0.003 & 11 & 64 & N/A & N/A & N/A & N/A & N/A & N/A \\
 \hline
-i\_10 & & & & & & & & & & & & \\
+i\_10 & 0.03 & 96 & 861 & 0.003 & 9 & 86 & N/A & N/A & N/A & N/A & N/A & N/A \\
 \hline
 \end{tabular}
 \end{center}
 \textbf{T}: Time — \textbf{EN}: Explored nodes —
-\textbf{RNQ}: Remaining nodes in the queue
+\textbf{RNQ}: Remaining nodes in the queue — \textbf{N/A}: Timeout
 \end{answers}
 
 
@@ -195,6 +205,7 @@ you lose?
 
 \begin{answer}
 % Your answer here
+Si on voit que le fruit est empoisonné, on peut simplement le considérer comme une case vide et donc passer au dessus sans s'y arrêter.
 \end{answer}
 
 \begin{enumerate}
