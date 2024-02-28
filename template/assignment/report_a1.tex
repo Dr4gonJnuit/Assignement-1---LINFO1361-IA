@@ -16,7 +16,8 @@
 
 \begin{answer}
 % Your answer here
-Pour effectuer une recherche, il faut définir la classe \textit{Problem} avec les méthodes \textit{actions}, \textit{result} et \textit{goal\_test}. Elles sont utilisées dans \textit{tree\_search} pour connaître ce que PacMan peut faire et fera à chaque état.
+Pour effectuer une recherche, il faut étendre la classe \textit{Problem} avec les méthodes \textit{actions}, \textit{result} et \textit{goal\_test}. Elles sont utilisées dans \textit{tree\_search} pour connaître ce que PacMan peut faire, fera à chaque état et s'il a atteint son but. \\
+Il faut définir la classe \textit{Node} qui est utilisée dans \textit{tree\_search} pour se souvenir de l'état actuel, de l'état précédent et du chemin qui a été faite pour arriver à cet état.
 \end{answer}
 
 
@@ -28,7 +29,7 @@ Pour effectuer une recherche, il faut définir la classe \textit{Problem} avec l
 
 \begin{answer}
 % Your answer here
-\textit{Breadth\_first\_graph\_search} utilise une Queue qui est une structure FIFO, tandis que \textit{depth\_first\_graph\_search} utilise une Stack qui elle est une structure LIFO. Ce ne sont donc pas les mêmes valeurs qui en resortiront, le premier sort les valeurs dans l'ordre où elles sont entrées, tandis que le second sort les dernières valeurs entrées en premier.
+\textit{Breadth\_first\_graph\_search} utilise une Queue qui est une structure FIFO, tandis que \textit{depth\_first\_graph\_search} utilise une Stack qui elle est une structure LIFO. Ce ne sont donc pas les mêmes valeurs qui en resortiront, la première sort les valeurs dans l'ordre où elles sont entrées, tandis que le second sort les dernières valeurs entrées en premier.
 \end{answer}
 
 
@@ -54,6 +55,7 @@ Un \textit{tree\_search} ne le fait pas et de ce fait requiert moins de mémoire
 
 \begin{answer}
 % Your answer here
+La structure utilisée est un \textit{set} ou un \textit{dictionnaire}. Les éléments qui peuvent être mis dedans doivent être uniques et immuables. On peut y accéder en vérifiant si le hash de l'élément est présent dans le set ou dans la clé du le dictionnaire.
 \end{answer}
 
 
@@ -65,6 +67,7 @@ Un \textit{tree\_search} ne le fait pas et de ce fait requiert moins de mémoire
 
 \begin{answer}
 % Your answer here
+Comme le \textit{set} ou le \textit{dictionnaire} ne peut contenir qu'une seule fois un élément, si on a deux états symétriques, ils auront le même hash/clé et ne seront donc pas ajoutés dans la structure.
 \end{answer}
 
 
@@ -112,6 +115,9 @@ Pour éviter les murs, on peut simplement vérifier si la case où PacMan veut s
 
 \begin{answer}
 % Your answer here
+L'avantage de \textit{breadth\_first} est qu'il parcourt toutes les cases donc il est assuré de trouver la solution optimale. Il peut cependant mettre beaucoup de temps à trouver la solution si la grille est grande. De plus, il utilise beaucoup de mémoire qui risque de ne pas permettre la fin de son exécution. \\
+\textit{Depth\_first} quant à lui se dirige directement vers les cases les plus éloignées de la position initiale. Il sera plus rapide si les fruits sont éloignés de la position de PacMan. Il requiert aussi moins de mémoire car il parcourt en génréral moins de case. \\
+Pour ce problème, nous choisirons d'utiliser \textit{breadth\_first} car on a un petit nombre d'états.
 \end{answer}
 
 
@@ -159,30 +165,30 @@ Pour ce problème, on choisirait d'utiliser un graphe car on a un nombre fini d'
 \cline{2-13}
  & T(s) & EN & RNQ & T(s) & EN & RNQ & T(s) & EN & RNQ & T(s) & EN & RNQ\\
 \hline
-i\_01 & 0.07 & 116 & 1421 & 0.005 & 9 & 106 & N/A & N/A & N/A & N/A & N/A & N/A \\
+i\_01 & 0.07 & 116 & 1421 & 0.005 & 9 & 106 & \O & \O & \O & \O & \O & \O \\
 \hline
-i\_02 & 0.03 & 96 & 861 & 0.003 & 9 & 86 & N/A & N/A & N/A & N/A & N/A & N/A \\
+i\_02 & 0.03 & 96 & 861 & 0.003 & 9 & 86 & \O & \O & \O & \O & \O & \O \\
 \hline
-i\_03 & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A \\
+i\_03 & 357.43 & 1354575 & 10124430 & 3804 & 159276 & 1195298 & \O & \O & \O & \O & \O & \O \\
 \hline
-i\_04 & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A \\
+i\_04 & 156.61 & 242209 & 2774391 & 1221 & 19247 & 222961 & \O & \O & \O & \O & \O & \O \\
 \hline
-i\_05 & 3.29 & 6849 & 66352 & 0.3 & 692 & 6156 & N/A & N/A & N/A & N/A & N/A & N/A \\
+i\_05 & 3.29 & 6849 & 66352 & 0.3 & 692 & 6156 & \O & \O & \O & \O & \O & \O \\
 \hline
-i\_06 & 0.05 & 283 & 2282 & 0.007 & 32 & 250 & N/A & N/A & N/A & N/A & N/A & N/A \\
+i\_06 & 0.05 & 283 & 2282 & 0.007 & 32 & 250 & \O & \O & \O & \O & \O & \O \\
 \hline
-i\_07 & 0.47 & 2157 & 16410 & 0.06 & 247 & 1909 & N/A & N/A & N/A & N/A & N/A & N/A \\
+i\_07 & 0.47 & 2157 & 16410 & 0.06 & 247 & 1909 & \O & \O & \O & \O & \O & \O \\
 \hline
-i\_08 & 0.008 & 89 & 451 & 0.001 & 16 & 72 & N/A & N/A & N/A & N/A & N/A & N/A \\
+i\_08 & 0.008 & 89 & 451 & 0.001 & 16 & 72 & \O & \O & \O & \O & \O & \O \\
 \hline
-i\_09 & 0.02 & 76 & 581 & 0.003 & 11 & 64 & N/A & N/A & N/A & N/A & N/A & N/A \\
+i\_09 & 0.02 & 76 & 581 & 0.003 & 11 & 64 & \O & \O & \O & \O & \O & \O \\
 \hline
-i\_10 & 0.03 & 96 & 861 & 0.003 & 9 & 86 & N/A & N/A & N/A & N/A & N/A & N/A \\
+i\_10 & 0.03 & 96 & 861 & 0.003 & 9 & 86 & \O & \O & \O & \O & \O & \O \\
 \hline
 \end{tabular}
 \end{center}
 \textbf{T}: Time — \textbf{EN}: Explored nodes —
-\textbf{RNQ}: Remaining nodes in the queue — \textbf{N/A}: Timeout
+\textbf{RNQ}: Remaining nodes in the queue — \textbf{\O}: Timeout
 \end{answers}
 
 
@@ -205,7 +211,8 @@ you lose?
 
 \begin{answer}
 % Your answer here
-Si on voit que le fruit est empoisonné, on peut simplement le considérer comme une case vide et donc passer au dessus sans s'y arrêter.
+Si on voit que le fruit est empoisonné, on peut simplement le considérer comme une case vide et donc passer au dessus sans s'y arrêter. \\
+Si on peut s'arrêter sur la case où se trouve le fruit sans obligatoirement le manger alors on peut se servir de cette case pour avoir un chemin plus court dans les situations où la case de ce fruit empoisonné est un point où le PacMan aurait pû s'arrêter au lieu de contourner le fruit.
 \end{answer}
 
 \begin{enumerate}
@@ -219,6 +226,7 @@ Si on voit que le fruit est empoisonné, on peut simplement le considérer comme
 
 \begin{answer}
 % Your answer here
+Avec un \textit{iterative\_deepening\_depth\_first\_search}, on pourrait trouver une solution nécessitant moins de mémoire que \textit{breadth\_first\_graph\_search} (l'algorithme que nous avons choisi) car c'est un algorithme qui a une complexité spacialle réduite.
 \end{answer}
 
 \end{document}
